@@ -1,0 +1,73 @@
+1.
+CREATE FUNCTION Function_A()
+RETURNS   table 
+AS 
+	 return(
+	   select count( b.Id_press) as Count_books from books b	 
+	  where Id_press is null
+	  )
+
+2.
+CREATE FUNCTION Function_B()
+RETURNS   table 
+AS 
+	 return(
+	   select p.name, count( b.Id_press) as Count_books from press p
+	   inner join books b on b.Id_press=p.id
+	   
+	   group by p.name
+
+	  )
+CREATE FUNCTION Function_C()
+RETURNS   table 
+AS 
+	 return(
+	   select t.name, count( b.Id_theme) as Count_books from themes t
+	   inner join books b on b.Id_theme=t.id
+	  
+	   group by p.name
+
+	  )
+
+3.
+CREATE FUNCTION Function_D(
+ @name_book varchar(50),
+ @theme_book varchar(50),
+ @category_book varchar(50),
+ @press_book varchar(50)
+)
+RETURNS   table 
+AS 
+	 return(
+	   select b.Name, t.name,c.name,p.name from books b
+	   inner join press p on b.Id_press=p.id
+	  inner join themes t on t.id = b.Id_theme
+	  inner join category c on c.id = b.id_category
+	  where b.Name =@name_book and 
+	  t.name=@theme_book and 
+	  c.name=@category_book and 
+	  @press_book=p.name
+
+	  )
+1.
+CREATE FUNCTION Function_F(
+ @a int,@b int,@c int
+)
+RETURNS  int 
+AS 
+begin
+	 return case when @a<@b and @a<@c then @a  else case when @b<@c then @b else @c end end 
+	 end
+
+2.
+CREATE FUNCTION Function_G(
+@a int )
+RETURNS  int 
+AS
+begin 
+declare @b int
+declare @c int
+set @b = @a%10
+set @c = @a-@b/10
+	 return case when @b>@c then @b else @c end end 
+
