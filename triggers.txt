@@ -1,0 +1,66 @@
+﻿1.
+CREATE TRIGGER Trigger_1
+   ON  Vidacha
+   AFTER INSERT
+   as
+   declare @count int,
+   @name varchar(75)
+	Select @name=name from inserted 
+	
+	Update Books
+	Set count=count-1
+	where name like @name
+
+2.
+CREATE TRIGGER Trigger_2
+   ON  Vosvrat
+   AFTER INSERT
+   as
+   declare @count int,
+   @name varchar(70)
+	Select @name=name from inserted 
+	
+	Update Books
+	Set count=count+1
+	where name like @name
+
+3.
+CREATE TRIGGER Trigger_3
+   ON  Vidacha
+   AFTER INSERT
+   as
+   declare @count int,
+   @name varchar(75)
+	Select @name=name from inserted 
+	Select @count=count from Books where name like @name 
+	 
+	 if(@count=0)
+	 begin
+	   raiserror('Такой книги больше нет',0,1)
+	   end
+4.
+CREATE TRIGGER Trigger_4
+   ON  Books
+   AFTER DELETE
+   as
+   declare @count int,
+   @name varchar(75)
+	Select @name=name from deleted 
+	Select @count=count from deleted
+	 
+	insert into Udalenniye
+	values(@name,@count)
+ 
+5.
+CREATE TRIGGER Trigger_5
+   ON  Books
+   AFTER Insert
+   as
+   declare @id int,
+   @name varchar(75)
+	Select @name=name from inserted 
+	 
+ delete from Udalenniye
+ where name like @name 
+
+
