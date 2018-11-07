@@ -1,0 +1,410 @@
+1.
+fun main(args: Array<String>) {
+    var nums= arrayListOf<Int>()
+    nums.addAll(listOf(5,3,95,42,12,56,32,1,67,99,126,44,2))
+    println("Size of array is ${nums.size}")
+    for (i in nums){
+        print("   $i")
+
+    }
+choiceSort(nums)
+    println("\nSorted:")
+    for (i in nums){
+        print("   $i")
+
+    }
+
+}
+
+fun choiceSort(a: ArrayList<Int>) {
+    var indexMin: Int
+    for (index in 0 until a.size  ) {
+        indexMin=index
+        for(j in (index+1) until a.size  ){
+            if(a [j]<a  [indexMin])
+                indexMin=j
+        }
+        swaper(a, indexMin,index )
+    }
+
+}
+fun swaper(a : ArrayList<Int>, b: Int, c:Int) {
+    val temp = a[b]
+    a[b] = a[c]
+    a[c] = temp
+}
+2.
+/*2) Создать класс Engineer с полями name, department. Унаследовать от Engineer класс
+QA с методом releaseTesting. Метод releaseTesting получает через
+сколько дней релиз (int) и новый функционал, который надо зарелизить
+(arrayList, как пример [“registration”, “redesign”, “addButton”…])
+Функция возвращает bool. True, если мы успеваем проверить все задачи к дате релиза
+при учете, что QA может проверить две задачи за один рабочий день. False, если мы не успеваем
+Необходимо написать тесты для проверки работы метода releaseTesting
+(придумать минимум 7 граничных значений для работы данного метода)*/
+
+fun main(args: Array<String>) {    
+   var ob=QA()
+    ob.releaseTesting(4)
+    }
+
+
+open class Engineer{
+
+    protected var name:String="Проект Авалон"
+    protected var department: String="Департамент 3"
+    public var have="you don't have time"
+    public var q :Boolean =true;
+
+    open fun releaseTesting(days:Int){
+
+
+    }
+}
+class QA :Engineer(){
+
+    override fun releaseTesting(days:Int){
+
+        when(days){
+          in  8..100 -> have="You have time"
+            else -> have="You don't have time"
+        }
+        println(have)
+
+
+
+
+    }
+//regestr, redesign,addbutton, mailConfirm, dataBasereg,acceptMail,tutorialForNew,mailUnion
+
+
+    fun test(): Array<String> {
+        val elems = arrayListOf<String>()
+        return elems.toTypedArray()
+    }
+}
+
+3.import io.kotlintest.matchers.collections.shouldContain
+import io.kotlintest.matchers.numerics.shouldBeLessThan
+import io.kotlintest.shouldBe
+import io.kotlintest.specs.DescribeSpec
+
+class BasicsSpec : DescribeSpec({
+    describe("Checks releaseTesting function") {
+         var cx= arrayListOf<String>("register", "redesign","addButton","mailConfirm","dataBasereg","acceptMail","tutorialForNew","mailUnion")
+        val kek=QA()
+
+        context("проверка на граничные значения") {
+
+            it("it should be true") {
+                kek.releaseTesting(4,cx) shouldBe true
+            }
+        }
+
+        context("variables") {
+            var cx= arrayListOf<String>("redesign","addButton","mailConfirm","dataBasereg","acceptMail","tutorialForNew","mailUnion")
+            val kek=QA()
+//
+
+            it("can be reassigned") {
+                kek.releaseTesting(3,cx) shouldBe false
+            }
+        }
+
+    }
+})
+/*2) Создать класс Engineer с полями name, department. Унаследовать от Engineer класс
+QA с методом releaseTesting. Метод releaseTesting получает через
+сколько дней релиз (int) и новый функционал, который надо зарелизить
+(arrayList, как пример [“registration”, “redesign”, “addButton”…])
+Функция возвращает bool. True, если мы успеваем проверить все задачи к дате релиза
+при учете, что QA может проверить две задачи за один рабочий день. False, если мы не успеваем
+Необходимо написать тесты для проверки работы метода releaseTesting
+(придумать минимум 7 граничных значений для работы данного метода)*/
+
+
+open class Engineer{
+
+    protected var name1:String="Проект Авалон"
+    protected var department2: String="Департамент 3"
+    protected var cx= arrayListOf<String>("register", "redesign","addButton","mailConfirm","dataBasereg","acceptMail","tutorialForNew","mailUnion")
+
+
+}
+
+class QA :Engineer(){
+
+    // Необхлодимо на вход передавать так же список задач arrayList<String>
+    fun releaseTesting(days:Int,    tasks: ArrayList<String>):Boolean{
+// выводит true or false в зависимости от количества задач
+    val days2=days*2
+     val number=days2-tasks.size
+
+        if(number>=0) {
+            return true
+        }
+        else {
+            return false
+        }
+
+    }
+//regestr, redesign,addbutton, mailConfirm, dataBasereg,acceptMail,tutorialForNew,mailUnion
+
+    fun test(): Array<String> {
+        val elems = arrayListOf<String>()
+        return elems.toTypedArray()
+    }
+}
+
+4.
+import io.kotlintest.matchers.collections.shouldContain
+import io.kotlintest.matchers.numerics.shouldBeLessThan
+import io.kotlintest.shouldBe
+import io.kotlintest.specs.DescribeSpec
+
+class BasicsSpec : DescribeSpec({
+    describe("Проверка успеха сортировки") {
+        var nums= arrayListOf<Int>()
+        nums.addAll(listOf(5,3,95,42,12,56,32,1,67,99,126,44,2))
+        var nums2= arrayListOf<Int>()
+        nums2.addAll(listOf(53,534,645,23,6,1,986,34,56,312,45,95))
+        context("Сортировка") {
+            choiceSort(nums)
+            it("последнее число в массиве должно быть 126") {
+                nums.last() shouldBe 126
+            }
+        }
+
+        context("variables") {
+        choiceSort(nums2)
+//
+
+            it("can be reassigned") {
+nums2.first() shouldBe 1
+            }
+        }
+
+    }
+})
+/*
+fun main(args: Array<String>) {
+   var nums= arrayListOf<Int>()
+   nums.addAll(listOf(5,3,95,42,12,56,32,1,67,99,126,44,2))
+   println("Size of array is ${nums.size}")
+    (i in nums){
+       print("   $i")
+   }
+   choiceSort(nums)
+   println("\nSorted:")
+   for (i in nums){
+       print("   $i")
+
+   }
+
+}
+*/
+fun choiceSort(a: ArrayList<Int>) {
+   var indexMin: Int
+   for (index in 0 until a.size  ) {
+       indexMin=index
+       for(j in (index+1) until a.size  ){
+           if(a [j]<a  [indexMin])
+               indexMin=j
+       }
+       swaper(a, indexMin,index )
+   }
+
+}
+fun swaper(a : ArrayList<Int>, b: Int, c:Int) {
+   val temp = a[b]
+   a[b] = a[c]
+   a[c] = temp
+}
+
+5.
+
+import io.kotlintest.matchers.collections.shouldContain
+import io.kotlintest.matchers.numerics.shouldBeLessThan
+import io.kotlintest.shouldBe
+import io.kotlintest.specs.DescribeSpec
+
+
+class BasicsSpec : DescribeSpec({
+    describe("проверка на ошибки функций Инжинера и его побочных классов") {
+        val kek=QA()
+        val dev = Developerr()
+      
+        var s= mutableListOf<String>("register", "redesign","addButton","mailConfirm","dataBasereg","acceptMail","tutorialForNew","mailUnion","uploadProfPic","addChat","chatWithSupport","wFeedback")
+        context("проверка на граничные значения") {
+          var e=dev.work(1,)
+
+            it("it should be true") {
+
+            }
+        }
+
+        context("variables") {
+
+//
+
+            it("can be reassigned") {
+
+            }
+        }
+
+    }
+})
+/*Базовая задача 1) Расширить класс Engineer методом work(capacity: Int, currentTasks: ArrayList<String>)
+Унаследовать от класса Engineer класс Developer
+Реализовать метод work в классах Developer и QA.
+В классе Developer метод work добавляет N задач (N=capacity. Если capacity=2, то добавляется две задачи) в список currentTasks
+В классе QA метод ворк сокращает currentTasks на N задач (так же N=capacity)
+
+В тесте необходимо создать изначальный массив задач, после чего вызвать два раза метод work Developer класса (использую массив изначальных задач),
+после чего два раза вызвать метод work QA класса, после чего вызвать метод releaseTesting, который нам скажет успеваем ли мы релизнуться или нет
+Необходимо написать минимум 5 тестов
+ currentTasks = изначальный массив задач
+ capacity = сколько задач нужно добавить или удалить
+ */
+
+
+open class Engineer{
+
+    protected var name:String="Проект Авалон"
+    protected var department: String="Департамент 3"
+
+    protected var d= mutableListOf<String>()
+    open fun work(capacity: Int, currentTasks: ArrayList<String>){
+
+
+    }
+    fun transfString(s:MutableList<String>, d:MutableList<String>){//Передает строку с одного во второй при этом удаляя с оригинала
+        if(s.size!=0){
+            val item = s[0]
+            d += item
+            s.removeAt(0)
+        }
+        else{
+            println("Sorry you run out of tasks ")
+        }
+    }
+}
+class Developerr:Engineer(){
+    //n-capacity
+
+    fun work(capacity: Int, currentTasks: MutableList<String>){
+        for(i in 1..capacity ){
+           transfString(MutableList<String>,currentTasks)
+        }
+    }
+   
+}
+class QA :Engineer(){
+//В классе QA метод ворк сокращает currentTasks на N задач (так же N=capacity)
+
+    fun releaseTesting(days:Int,    tasks: ArrayList<String>):Boolean{
+
+        val days2=days*2
+        val number=days2-tasks.size
+
+        if(number>=0) {
+            return true
+        }
+        else {
+            return false
+        }
+
+    }
+   override fun work(capacity: Int, currentTasks: ArrayList<String>){
+        for(i in 1..capacity ){
+            currentTasks.removeAt(0)
+        }
+    }
+//regestr, redesign,addbutton, mailConfirm, dataBasereg,acceptMail,tutorialForNew,mailUnion
+
+    fun test(): Array<String> {
+        val elems = arrayListOf<String>()
+        return elems.toTypedArray()
+    }
+}
+6.
+
+import io.kotlintest.matchers.collections.haveElementAt
+import io.kotlintest.matchers.collections.shouldContain
+import io.kotlintest.matchers.numerics.shouldBeLessThan
+import io.kotlintest.shouldBe
+import io.kotlintest.specs.DescribeSpec
+import com.univocity.parsers.common.ArgumentUtils.toCharArray
+import com.univocity.parsers.common.ArgumentUtils.toCharArray
+
+
+
+
+
+
+class BasicsSpec : DescribeSpec({
+    describe("проверка функции uniqueLetterCheck на ошибки") {
+
+
+        context("проверка на false и ошибки с граничными значениями ") {
+            val kek=uniqueLetterCheck("krtqk")
+            it("it should be true") {
+                println("Suppose to be false")
+            println(kek)
+            }
+        }
+
+        context("Проверка работы с String") {
+           val test=("abcdfghqert")
+            val kek=uniqueLetterCheck(test)//
+
+            it("suppose to be betrue") {
+                println()
+            println(kek)
+            }
+        }
+context("Проверка работы  ") {
+    val kek = uniqueLetterCheck("abwitjeora")//
+
+    it("Suppose to be false") {
+        println()
+        println(kek)
+    }
+}
+        context("Проверка работы с цифрами ") {
+            val kek = uniqueLetterCheck("kjui31276")//
+
+            it("Suppose to be true") {
+                println()
+                println(kek)
+            }
+        }
+
+        context("Проверка работы цифор на уникальность ") {
+            val kek = uniqueLetterCheck("353")//
+
+            it("Suppose to be false") {
+                println()
+                println(kek)
+            }
+        }
+    }
+})
+
+//Homework
+//Easy. Write a function that accepts a String as its only parameter, and returns true if the string has only
+//unique letters, taking letter case into account. Write tests for it.
+
+fun uniqueLetterCheck(a: String):Boolean{
+    var Unique = true
+
+    for (c in a.toCharArray()) {
+        if (a.indexOf(c) === a.lastIndexOf(c)) {
+            return Unique
+        } else {
+            Unique = false
+            return Unique
+        }
+    }
+    return Unique
+}
