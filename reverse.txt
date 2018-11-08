@@ -1,0 +1,69 @@
+
+import io.kotlintest.matchers.collections.haveElementAt
+import io.kotlintest.matchers.collections.shouldContain
+import io.kotlintest.matchers.numerics.shouldBeLessThan
+import io.kotlintest.shouldBe
+import io.kotlintest.specs.DescribeSpec
+import com.univocity.parsers.common.ArgumentUtils.toCharArray
+import com.univocity.parsers.common.ArgumentUtils.toCharArray
+import com.univocity.parsers.common.ArgumentUtils.toCharArray
+
+class BasicsSpec : DescribeSpec({
+    describe("проверка функции uniqueLetterCheck на ошибки") {
+
+
+        context("проверка на ошибки ") {
+            var a =uniqueLetterCheck(642)
+            it("it should be false") {
+            println(a)
+            }
+        }
+
+
+context("Проверка функции  ") {
+
+    var a =uniqueLetterCheck(9889)
+    it("Suppose to be true") {
+        println()
+        println(a)
+    }
+}
+        context("Проверка работы с цифрами ") {
+            var a =uniqueLetterCheck(198496)
+
+            it("Suppose to be false") {
+            println()
+                println(a)
+            }
+        }
+
+        context("Проверка работы цифор на уникальность ") {
+            var a =uniqueLetterCheck(877778)
+            it("Suppose to be true") {
+            println()
+                println(a)
+            }
+        }
+    }
+})
+
+//Homework
+// Determine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.
+
+fun uniqueLetterCheck(a: Int):Boolean {
+    var palindrome = true
+    val chars = ("" + a).toString()
+    val revC= chars.reversed()
+    if(chars==revC){
+       return palindrome
+    } else if(chars!=revC){
+        palindrome=false
+        return palindrome
+    }
+    else{
+        println("Error")
+    }
+    return palindrome
+
+}
+
